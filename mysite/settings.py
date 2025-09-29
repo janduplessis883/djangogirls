@@ -25,6 +25,8 @@ SECRET_KEY = 'django-insecure-6b5+^2qha1*i3vi-xwpe2cg*h91@4dwumw*v=w0ask=+rxy0_f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+import os
+
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'render.com']
 
 
@@ -118,10 +120,12 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
